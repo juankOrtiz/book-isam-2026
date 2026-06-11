@@ -28,8 +28,9 @@
                     Nombre completo
                 </label>
                 <div class="relative">
-                    <input type="text" name="nombre" id="nombre" placeholder="Ej. Juan Pérez" required
-                        class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-200">
+                    <input type="text" name="nombre" id="nombre" placeholder="Ej. Juan Pérez"
+                        class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-200"
+                        value="{{ old('nombre') }}">
                 </div>
                 @error('nombre')
                     <p class="mt-1.5 text-xs text-red-600 flex items-center gap-1">
@@ -43,8 +44,9 @@
                     Correo electrónico
                 </label>
                 <div class="relative">
-                    <input type="email" name="email" id="email" placeholder="juan.perez@ejemplo.com" required
-                        class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-200">
+                    <input type="email" name="email" id="email" placeholder="juan.perez@ejemplo.com"
+                        class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-200"
+                        value="{{ old('email') }}">
                 </div>
                 @error('email')
                     <p class="mt-1.5 text-xs text-red-600 flex items-center gap-1">

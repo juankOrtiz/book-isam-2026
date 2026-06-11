@@ -20,6 +20,33 @@
         </div>
     </div>
 
+    @if(session('success'))
+        <div class="mb-6 p-4 bg-white border border-emerald-200 rounded-xl shadow-xs flex items-start gap-3 animate-fade-in">
+            <!-- Icono de Check / Éxito (Color Verde/Emerald) -->
+            <div
+                class="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold shadow-xs">
+                ✓
+            </div>
+
+            <!-- Contenido del Mensaje -->
+            <div class="flex-1">
+                <h4 class="text-sm font-bold text-emerald-900">
+                    ¡Operación exitosa!
+                </h4>
+                <p class="mt-0.5 text-sm text-emerald-700/90 leading-relaxed">
+                    {{ session('success') }}
+                </p>
+            </div>
+
+            <!-- Botón para cerrar (Opcional, puramente estético o funcional si usas JS) -->
+            <button type="button"
+                class="text-emerald-400 hover:text-emerald-600 transition-colors cursor-pointer text-sm font-medium px-1"
+                onclick="this.parentElement.remove()">
+                ✕
+            </button>
+        </div>
+    @endif
+
     <div class="bg-white rounded-2xl border border-emerald-100 shadow-xs overflow-hidden">
         <ul role="list" class="divide-y divide-slate-100">
             @foreach ($usuarios as $usuario)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUsuarioRequest;
 use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
@@ -28,8 +29,12 @@ class UsuariosController extends Controller
         return view('usuarios.create');
     }
 
-    public function store(Request $request) {
-        // A futuro: guardar en la BD
-        return redirect()->route('usuarios.index');
+    public function store(StoreUsuarioRequest $request) {
+        // 1. Validar los datos (en StoreUsuarioRequest)
+        // 2. A futuro: guardar en la BD
+        // 3. Redirigir a la pagina index
+        return redirect()
+            ->route('usuarios.index')
+            ->with('success', 'El usuario fue creado');
     }
 }
