@@ -8,11 +8,7 @@
 </head>
 
 <body>
-    <div>
-        <ul>
-            <li>Inicio</li>
-        </ul>
-    </div>
+    <x-menu />
 
     <main>
         @yield('contenido')
