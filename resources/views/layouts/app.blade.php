@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" class="h-full">
 
 <head>
     <meta charset="UTF-8">
@@ -8,12 +8,14 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 
-<body>
+<body class="min-h-full bg-emerald-50 text-slate-900 font-sans antialiased flex flex-col">
+
     <x-menu />
 
-    <main>
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         @yield('contenido')
     </main>
+
 </body>
 
 </html>

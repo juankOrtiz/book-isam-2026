@@ -5,6 +5,7 @@ use App\Http\Controllers\UsuariosController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('inicio');
 
-Route::get('/usuarios', [UsuariosController::class, "index"]);
+Route::get('/usuarios-sistema', [UsuariosController::class, "index"])
+    ->name('usuarios.index');
