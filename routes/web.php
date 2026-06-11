@@ -7,4 +7,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/usuarios', [UsuariosController::class, "listado"]);
+Route::get('/usuarios', [UsuariosController::class, "index"]);
