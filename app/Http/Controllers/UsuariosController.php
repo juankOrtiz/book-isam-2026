@@ -37,4 +37,66 @@ class UsuariosController extends Controller
             ->route('usuarios.index')
             ->with('success', 'El usuario fue creado');
     }
+
+    public function show(int $id) {
+        /*if($id < 1 || $id > 3) {
+            abort(404);
+        }*/
+        $usuarios = [
+            [
+                'id' => 1,
+                'nombre' => 'Juan',
+                'email' => 'juan@mail.com'
+            ],
+            [
+                'id' => 2,
+                'nombre' => 'Pedro',
+                'email' => 'pedro@mail.com'
+            ],
+            [
+                'id' => 3,
+                'nombre' => 'Natalia',
+                'email' => 'natalia@mail.com'
+            ],
+        ];
+        $usuario = $usuarios[$id - 1];
+        return view('usuarios.show', compact('usuario'));
+    }
+
+    public function edit(int $id) {
+        $usuarios = [
+            [
+                'id' => 1,
+                'nombre' => 'Juan',
+                'email' => 'juan@mail.com'
+            ],
+            [
+                'id' => 2,
+                'nombre' => 'Pedro',
+                'email' => 'pedro@mail.com'
+            ],
+            [
+                'id' => 3,
+                'nombre' => 'Natalia',
+                'email' => 'natalia@mail.com'
+            ],
+        ];
+        $usuario = $usuarios[$id - 1];
+
+        return view('usuarios.edit', compact('usuario'));
+    }
+
+    public function update(StoreUsuarioRequest $request, int $id) {
+        // TODO: a futuro, actualizar en la BD
+        return redirect()
+            ->route('usuarios.index')
+            ->with('success', 'El usuario fue actualizado');
+    }
+
+    public function destroy(int $id) {
+        // TODO: a futuro, eliminar de la BD
+        return redirect()
+            ->route('usuarios.index')
+            ->with('success', 'El usuario fue eliminado');
+    }
 }

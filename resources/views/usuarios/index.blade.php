@@ -59,14 +59,12 @@
                     </div>
 
                     <div class="flex gap-2">
-                        <span
-                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
-                            ★ 4.8
-                        </span>
-                        <span
-                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
-                            12 Leídos
-                        </span>
+                        <a href="/usuarios/1/edit">Editar</a>
+                        <form action="{{ route('usuarios.destroy', 1) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button>Eliminar</button>
+                        </form>
                     </div>
                 </li>
             @endforeach
