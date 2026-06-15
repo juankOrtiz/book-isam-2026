@@ -17,7 +17,11 @@
             <div class="bg-white rounded-2xl border border-emerald-100 shadow-xs p-6 text-center sticky top-24">
                 <div
                     class="w-20 h-20 mx-auto rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-3xl shadow-md mb-4">
-                    {{ substr($usuario['nombre'], 0, 1) }}
+                    @isset($usuario['avatar'])
+                        <img src="{{ asset('storage/avatars/' . $usuario['avatar']) }}" alt="Foto de usuario">
+                    @else
+                        <img src="{{ asset('storage/avatars/default-avatar.jpg') }}" alt="Foto de usuario">
+                    @endisset
                 </div>
 
                 <h2 class="text-xl font-bold text-slate-900 tracking-tight">{{ $usuario['nombre'] }}</h2>

@@ -15,7 +15,8 @@ class UsuariosController extends Controller
             ],
             [
                 'nombre' => 'Pedro',
-                'email' => 'pedro@mail.com'
+                'email' => 'pedro@mail.com',
+                'avatar' => 'usuario_1781537702.jpg'
             ],
             [
                 'nombre' => 'Natalia',
@@ -31,6 +32,10 @@ class UsuariosController extends Controller
 
     public function store(StoreUsuarioRequest $request) {
         // 1. Validar los datos (en StoreUsuarioRequest)
+        // 1.5) Procesar y guardar la imagen de perfil
+        if($request->hasFile('avatar')) {
+            $request->file('avatar')->storeAs('avatars', 'usuario_' . time() . '.jpg', 'public');
+        }
         // 2. A futuro: guardar en la BD
         // 3. Redirigir a la pagina index
         return redirect()
@@ -51,7 +56,8 @@ class UsuariosController extends Controller
             [
                 'id' => 2,
                 'nombre' => 'Pedro',
-                'email' => 'pedro@mail.com'
+                'email' => 'pedro@mail.com',
+                'avatar' => 'usuario_1781537702.jpg'
             ],
             [
                 'id' => 3,
