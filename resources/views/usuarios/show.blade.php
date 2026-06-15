@@ -4,7 +4,7 @@
 
 @section('contenido')
     <div class="mb-6">
-        <a href="/usuarios"
+        <a href="{{ route('usuarios.index') }}"
             class="inline-flex items-center text-sm font-medium text-emerald-600 hover:text-emerald-700 gap-1 group">
             <span class="transform group-hover:-translate-x-1 transition-transform duration-200">←</span>
             Volver al listado
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <a href="/usuarios/{{ $usuario['id'] }}/edit"
+                    <a href="{{ route('usuarios.edit', $usuario['id']) }}"
                         class="w-full inline-flex justify-center items-center px-4 py-2.5 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 transition-colors">
                         Editar Perfil
                     </a>

@@ -52,15 +52,15 @@
             @foreach ($usuarios as $usuario)
                 <li class="p-4 sm:px-6 hover:bg-emerald-50/40 transition-colors duration-150 flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <div
+                        <a href="{{ route('usuarios.show', $usuario['id']) }}"
                             class="p-2 rounded-sm bg-emerald-600 flex items-center justify-center text-white font-semibold text-sm">
                             {{ $usuario["nombre"] }}
-                        </div>
+                        </a>
                     </div>
 
                     <div class="flex gap-2">
-                        <a href="/usuarios/1/edit">Editar</a>
-                        <form action="{{ route('usuarios.destroy', 1) }}" method="POST">
+                        <a href="{{ route('usuarios.edit', $usuario['id']) }}">Editar</a>
+                        <form action="{{ route('usuarios.destroy', $usuario['id']) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button>Eliminar</button>

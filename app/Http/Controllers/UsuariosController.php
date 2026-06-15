@@ -10,15 +10,18 @@ class UsuariosController extends Controller
     public function index() {
         $usuarios = [
             [
+                'id' => 1,
                 'nombre' => 'Juan',
                 'email' => 'juan@mail.com'
             ],
             [
+                'id' => 2,
                 'nombre' => 'Pedro',
                 'email' => 'pedro@mail.com',
                 'avatar' => 'usuario_1781537702.jpg'
             ],
             [
+                'id' => 3,
                 'nombre' => 'Natalia',
                 'email' => 'natalia@mail.com'
             ],
