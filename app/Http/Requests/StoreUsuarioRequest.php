@@ -25,7 +25,8 @@ class StoreUsuarioRequest extends FormRequest
         return [
             'nombre' => ['required', 'min:3', 'max:100'],
             'email' => ['email', 'required'],
-            'avatar' => ['image', 'mimes:jpeg,jpg,png,webp', 'max:2048']
+            'password' => ['required'],
+            // 'avatar' => ['image', 'mimes:jpeg,jpg,png,webp', 'max:2048']
         ];
     }
 }

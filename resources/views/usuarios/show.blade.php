@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Perfil de ' . $usuario['nombre'])
+@section('titulo', 'Perfil de ' . $usuario->name)
 
 @section('contenido')
     <div class="mb-6">
@@ -24,8 +24,8 @@
                     @endisset
                 </div>
 
-                <h2 class="text-xl font-bold text-slate-900 tracking-tight">{{ $usuario['nombre'] }}</h2>
-                <p class="text-sm text-slate-500 mb-6">{{ $usuario['email'] }}</p>
+                <h2 class="text-xl font-bold text-slate-900 tracking-tight">{{ $usuario->name }}</h2>
+                <p class="text-sm text-slate-500 mb-6">{{ $usuario->email }}</p>
 
                 <hr class="border-slate-100 my-4">
 
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <a href="{{ route('usuarios.edit', $usuario['id']) }}"
+                    <a href="{{ route('usuarios.edit', $usuario->id) }}"
                         class="w-full inline-flex justify-center items-center px-4 py-2.5 border border-slate-200 rounded-xl text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 transition-colors">
                         Editar Perfil
                     </a>

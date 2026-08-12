@@ -4,28 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUsuarioRequest;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UsuariosController extends Controller
 {
     public function index() {
-        $usuarios = [
-            [
-                'id' => 1,
-                'nombre' => 'Juan',
-                'email' => 'juan@mail.com'
-            ],
-            [
-                'id' => 2,
-                'nombre' => 'Pedro',
-                'email' => 'pedro@mail.com',
-                'avatar' => 'usuario_1781537702.jpg'
-            ],
-            [
-                'id' => 3,
-                'nombre' => 'Natalia',
-                'email' => 'natalia@mail.com'
-            ],
-        ];
+        $usuarios = User::all();
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -36,10 +20,16 @@ class UsuariosController extends Controller
     public function store(StoreUsuarioRequest $request) {
         // 1. Validar los datos (en StoreUsuarioRequest)
         // 1.5) Procesar y guardar la imagen de perfil
-        if($request->hasFile('avatar')) {
+        /*if($request->hasFile('avatar')) {
             $request->file('avatar')->storeAs('avatars', 'usuario_' . time() . '.jpg', 'public');
-        }
-        // 2. A futuro: guardar en la BD
+        }*/
+        // 2. Guardar en la BD
+        User::create([
+            'name' => $request->input('nombre'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ]);
+
         // 3. Redirigir a la pagina index
         return redirect()
             ->route('usuarios.index')
@@ -47,63 +37,33 @@ class UsuariosController extends Controller
     }
 
     public function show(int $id) {
-        /*if($id < 1 || $id > 3) {
-            abort(404);
-        }*/
-        $usuarios = [
-            [
-                'id' => 1,
-                'nombre' => 'Juan',
-                'email' => 'juan@mail.com'
-            ],
-            [
-                'id' => 2,
-                'nombre' => 'Pedro',
-                'email' => 'pedro@mail.com',
-                'avatar' => 'usuario_1781537702.jpg'
-            ],
-            [
-                'id' => 3,
-                'nombre' => 'Natalia',
-                'email' => 'natalia@mail.com'
-            ],
-        ];
-        $usuario = $usuarios[$id - 1];
+        $usuario = User::findOrFail($id);
         return view('usuarios.show', compact('usuario'));
     }
 
     public function edit(int $id) {
-        $usuarios = [
-            [
-                'id' => 1,
-                'nombre' => 'Juan',
-                'email' => 'juan@mail.com'
-            ],
-            [
-                'id' => 2,
-                'nombre' => 'Pedro',
-                'email' => 'pedro@mail.com'
-            ],
-            [
-                'id' => 3,
-                'nombre' => 'Natalia',
-                'email' => 'natalia@mail.com'
-            ],
-        ];
-        $usuario = $usuarios[$id - 1];
+        $usuario = User::findOrFail($id);
 
         return view('usuarios.edit', compact('usuario'));
     }
 
     public function update(StoreUsuarioRequest $request, int $id) {
-        // TODO: a futuro, actualizar en la BD
+        // Actualizar en la BD
+        User::where('id', $id)
+            ->update([
+                'name' => $request->input('nombre'),
+                'email' => $request->input('email'),
+            ]);
+
         return redirect()
             ->route('usuarios.index')
             ->with('success', 'El usuario fue actualizado');
     }
 
     public function destroy(int $id) {
-        // TODO: a futuro, eliminar de la BD
+        // Eliminar de la BD
+        User::destroy($id);
+
         return redirect()
             ->route('usuarios.index')
             ->with('success', 'El usuario fue eliminado');

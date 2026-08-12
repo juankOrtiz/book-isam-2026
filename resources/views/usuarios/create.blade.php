@@ -56,6 +56,22 @@
             </div>
 
             <div>
+                <label for="password" class="block text-sm font-medium text-slate-700 mb-1.5">
+                    Contraseña
+                </label>
+                <div class="relative">
+                    <input type="password" name="password" id="password" placeholder="juan.perez@ejemplo.com"
+                        class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-200"
+                        value="{{ old('password') }}">
+                </div>
+                @error('password')
+                    <p class="mt-1.5 text-xs text-red-600 flex items-center gap-1">
+                        <span>⚠️</span> {{ $message }}
+                    </p>
+                @enderror
+            </div>
+
+            <div>
                 <label for="avatar" class="block text-sm font-medium text-slate-700 mb-1.5">
                     Imagen de perfil (opcional)
                 </label>

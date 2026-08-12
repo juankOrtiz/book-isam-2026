@@ -17,7 +17,7 @@
             <h3 class="text-lg font-bold text-slate-900">Actualizar datos del usuario</h3>
         </div>
 
-        <form action="{{ route('usuarios.update', $usuario['id']) }}" method="POST" class="p-6 space-y-6">
+        <form action="{{ route('usuarios.update', $usuario->id) }}" method="POST" class="p-6 space-y-6">
             @csrf
             @method('PUT')
 
@@ -28,7 +28,7 @@
                 <div class="relative">
                     <input type="text" name="nombre" id="nombre" placeholder="Ej. Juan Pérez"
                         class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-200"
-                        value="{{ $usuario['nombre'] }}">
+                        value="{{ $usuario->name }}">
                 </div>
                 @error('nombre')
                     <p class="mt-1.5 text-xs text-red-600 flex items-center gap-1">
@@ -44,7 +44,7 @@
                 <div class="relative">
                     <input type="email" name="email" id="email" placeholder="juan.perez@ejemplo.com"
                         class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-hidden focus:bg-white focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-200"
-                        value="{{ $usuario['email'] }}">
+                        value="{{ $usuario->email }}">
                 </div>
                 @error('email')
                     <p class="mt-1.5 text-xs text-red-600 flex items-center gap-1">
