@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('resumen')->nullable();
             $table->string('autor');
             $table->integer('puntaje');
+            $table->string('estado')->default('pendiente');
             $table->timestamps();
         });
     }
