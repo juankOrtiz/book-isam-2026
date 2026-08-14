@@ -31,4 +31,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relación 1:N - Un usuario posee muchas listas de lectura.
+     */
+    public function listasLectura()
+    {
+        return $this->hasMany(ListaLectura::class);
+    }
 }

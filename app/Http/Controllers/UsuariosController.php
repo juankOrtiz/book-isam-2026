@@ -37,8 +37,17 @@ class UsuariosController extends Controller
     }
 
     public function show(int $id) {
-        $usuario = User::findOrFail($id);
-        return view('usuarios.show', compact('usuario'));
+        $usuario = User::with('listasLectura.libros')->findOrFail($id);
+
+        $todosLosLibros = $usuario->listasLectura->flatMap(function ($lista) {
+            return $lista->libros;
+        });
+
+        // Separar los libros segun su estado
+        $librosPendientes = $todosLosLibros->where('pivot.estado', 'pendiente');
+        $librosLeidos = $todosLosLibros->where('pivot.estado', 'completado');
+
+        return view('usuarios.show', compact('usuario', 'librosPendientes', 'librosLeidos'));
     }
 
     public function edit(int $id) {
