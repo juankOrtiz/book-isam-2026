@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Libro extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    // Relacion N:M
+    public function listasLectura()
+    {
+        return $this->belongsToMany(ListaLectura::class, 'libro_lista_lectura')
+            ->withPivot('puntaje', 'estado')
+            ->withTimestamps();
+    }
 }

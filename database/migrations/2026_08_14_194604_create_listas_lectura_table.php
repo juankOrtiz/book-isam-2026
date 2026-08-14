@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('libros', function (Blueprint $table) {
+        Schema::create('listas_lectura', function (Blueprint $table) {
             $table->id();
+            // Relacion 1:N con la tabla users
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->onDelete('cascade');
             $table->string('nombre', 150);
-            $table->text('resumen')->nullable();
-            $table->string('autor');
+            $table->text('descripcion')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('libros');
+        Schema::dropIfExists('listas_lectura');
     }
 };

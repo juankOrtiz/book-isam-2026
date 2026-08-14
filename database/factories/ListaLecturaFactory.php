@@ -2,13 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\ListaLectura;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Model>
+ * @extends Factory<ListaLectura>
  */
-class LibroFactory extends Factory
+class ListaLecturaFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +19,9 @@ class LibroFactory extends Factory
     public function definition(): array
     {
         return [
+            'user_id' => User::inRandomOrder(123)->first()?->id ?? User::factory()->create(),
             'nombre' => fake()->sentence(3),
-            'resumen' => fake()->paragraph(3),
-            'autor' => fake()->name(),
+            'descripcion' => fake()->paragraph(),
         ];
     }
 }
