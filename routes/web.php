@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ConsultaAvanzadaController;
+use App\Models\ListaLectura;
+use App\Models\Libro;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,4 +40,17 @@ Route::prefix('pruebas')->controller(ConsultaAvanzadaController::class)->group(f
     Route::get('/ultima-lista', 'ultimaListaUsuario');
     Route::get('/busqueda-dinamica', 'busquedaDinamica');
     Route::get('/reporte-autores', 'reporteAutores');
+});
+
+Route::get('/prueba-scope', function() {
+    $listas = ListaLectura::delUsuario(1)
+        ->get();
+    dd($listas);
+});
+
+Route::get('/prueba-libros', function() {
+    $libros = Libro::all();
+    //$libros = Libro::onlyTrashed()->get();
+
+    dd($libros);
 });

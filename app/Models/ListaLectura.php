@@ -31,4 +31,10 @@ class ListaLectura extends Model
             ->withPivot('puntaje', 'estado')
             ->withTimestamps();
     }
+
+    // Crear un "scope" local que permita obtener las listas de un usuario puntual
+    public function scopeDelUsuario($query, int $userId)
+    {
+        return $query->where('user_id', $userId);
+    }
 }

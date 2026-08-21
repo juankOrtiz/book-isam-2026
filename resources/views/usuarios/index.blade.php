@@ -70,4 +70,5 @@
             @endforeach
         </ul>
     </div>
+    {{ $usuarios->links() }}
 @endsection
