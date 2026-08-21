@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\ConsultaAvanzadaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,3 +30,12 @@ Route::delete('/usuarios/{id}', [UsuariosController::class, "destroy"])
     ->name('usuarios.destroy');*/
 
 Route::resource('usuarios', UsuariosController::class);
+
+Route::prefix('pruebas')->controller(ConsultaAvanzadaController::class)->group(function () {
+    Route::get('/libros-leidos', 'librosLeidos');
+    Route::get('/usuarios-leyendo', 'usuariosLeyendo');
+    Route::get('/estadisticas-listas', 'estadisticasListas');
+    Route::get('/ultima-lista', 'ultimaListaUsuario');
+    Route::get('/busqueda-dinamica', 'busquedaDinamica');
+    Route::get('/reporte-autores', 'reporteAutores');
+});
