@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ConsultaAvanzadaController;
+use App\Http\Controllers\AuthController;
 use App\Models\ListaLectura;
 use App\Models\Libro;
 
@@ -54,3 +55,20 @@ Route::get('/prueba-libros', function() {
 
     dd($libros);
 });
+
+// Ruta para mostrar el formulario de login
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login.show');
+
+// Ruta para procesar el intento de login
+Route::post('/login', [AuthController::class, 'storeLogin'])
+    ->name('login.store');
+
+// Ruta del dashboard para redirigir usuarios logueados
+Route::get('/dashboard', function () {
+    return '¡Bienvenido! Has iniciado sesión correctamente.';
+})->name('dashboard');
+
+// Ruta para cerrar sesión
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
