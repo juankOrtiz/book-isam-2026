@@ -5,6 +5,7 @@ use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ConsultaAvanzadaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ListaLecturaController;
 use App\Models\ListaLectura;
 use App\Models\Libro;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,17 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 
     Route::resource('usuarios', UsuariosController::class);
+
+    Route::get('/listas', [ListaLecturaController::class, 'index'])
+        ->name('listas.index');
+    Route::get('/listas/crear', [ListaLecturaController::class, 'create'])
+        ->name('listas.create');
+    Route::post('/listas', [ListaLecturaController::class, 'store'])
+        ->name('listas.store');
+    Route::get('/listas/{lista}', [ListaLecturaController::class, 'show'])
+        ->name('listas.show');
+    Route::post('/listas/{lista}/libros', [ListaLecturaController::class, 'agregarLibro'])
+        ->name('listas.agregar-libro');
 
     Route::prefix('pruebas')->controller(ConsultaAvanzadaController::class)->group(function () {
         Route::get('/libros-leidos', 'librosLeidos');
