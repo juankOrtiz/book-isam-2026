@@ -4,71 +4,56 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ConsultaAvanzadaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Models\ListaLectura;
 use App\Models\Libro;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('welcome');
+    return Auth::check()
+        ? redirect()->route('dashboard')
+        : redirect()->route('login');
 })->name('inicio');
 
-/*Route::get('/usuarios', [UsuariosController::class, "index"])
-    ->name('usuarios.index');
+// Parte privada de la app: requiere iniciar sesion
+Route::middleware('auth')->group(function () {
+    // Ruta del dashboard para redirigir usuarios logueados
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
-Route::get('/usuarios/crear', [UsuariosController::class, "create"])
-    ->name('usuarios.create');
+    // Ruta para cerrar sesión
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
 
-Route::post('/usuarios', [UsuariosController::class, "store"])
-    ->name('usuarios.store');
+    Route::resource('usuarios', UsuariosController::class);
 
-Route::get('/usuarios/{id}', [UsuariosController::class, "show"])
-    ->name('usuarios.show');
+    Route::prefix('pruebas')->controller(ConsultaAvanzadaController::class)->group(function () {
+        Route::get('/libros-leidos', 'librosLeidos');
+        Route::get('/usuarios-leyendo', 'usuariosLeyendo');
+        Route::get('/estadisticas-listas', 'estadisticasListas');
+        Route::get('/ultima-lista', 'ultimaListaUsuario');
+        Route::get('/busqueda-dinamica', 'busquedaDinamica');
+        Route::get('/reporte-autores', 'reporteAutores');
+    });
 
-Route::get('/usuarios/{id}/edit', [UsuariosController::class, "edit"])
-    ->name('usuarios.edit');
+    Route::get('/prueba-scope', function() {
+        $listas = ListaLectura::delUsuario(1)
+            ->get();
+        dd($listas);
+    });
 
-Route::put('/usuarios/{id}', [UsuariosController::class, "update"])
-    ->name('usuarios.update');
+    Route::get('/prueba-libros', function() {
+        $libros = Libro::all();
+        //$libros = Libro::onlyTrashed()->get();
 
-Route::delete('/usuarios/{id}', [UsuariosController::class, "destroy"])
-    ->name('usuarios.destroy');*/
-
-Route::resource('usuarios', UsuariosController::class);
-
-Route::prefix('pruebas')->controller(ConsultaAvanzadaController::class)->group(function () {
-    Route::get('/libros-leidos', 'librosLeidos');
-    Route::get('/usuarios-leyendo', 'usuariosLeyendo');
-    Route::get('/estadisticas-listas', 'estadisticasListas');
-    Route::get('/ultima-lista', 'ultimaListaUsuario');
-    Route::get('/busqueda-dinamica', 'busquedaDinamica');
-    Route::get('/reporte-autores', 'reporteAutores');
-});
-
-Route::get('/prueba-scope', function() {
-    $listas = ListaLectura::delUsuario(1)
-        ->get();
-    dd($listas);
-});
-
-Route::get('/prueba-libros', function() {
-    $libros = Libro::all();
-    //$libros = Libro::onlyTrashed()->get();
-
-    dd($libros);
+        dd($libros);
+    });
 });
 
 // Ruta para mostrar el formulario de login
 Route::get('/login', [AuthController::class, 'showLogin'])
-    ->name('login.show');
+    ->name('login');
 
 // Ruta para procesar el intento de login
 Route::post('/login', [AuthController::class, 'storeLogin'])
     ->name('login.store');
-
-// Ruta del dashboard para redirigir usuarios logueados
-Route::get('/dashboard', function () {
-    return '¡Bienvenido! Has iniciado sesión correctamente.';
-})->name('dashboard');
-
-// Ruta para cerrar sesión
-Route::post('/logout', [AuthController::class, 'logout'])
-    ->name('logout');

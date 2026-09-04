@@ -18,6 +18,14 @@
                     class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 transition-colors duration-200">
                     Usuarios
                 </a>
+                @auth
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button
+                            class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 transition-colors duration-200 hover:cursor-pointer">Cerrar
+                            sesión</button>
+                    </form>
+                @endauth
             </div>
         </div>
     </div>

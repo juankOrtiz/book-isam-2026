@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - NombreDeTuApp</title>
+    <title>Iniciar Sesión - Book ISAM</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="h-full antialiased font-sans text-slate-900">
@@ -17,7 +17,7 @@
 
             <div class="relative z-10 my-auto">
                 <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
-                    NombreDeTuApp
+                    Book ISAM
                 </h1>
                 <p class="mt-4 text-slate-400 text-lg max-w-md leading-relaxed">
                     Gestiona usuarios, revisa sus listas de lectura y administra la plataforma desde un solo lugar.
@@ -30,7 +30,7 @@
             <div class="w-full max-w-md space-y-8">
 
                 <div class="md:hidden text-center">
-                    <h1 class="text-3xl font-bold text-slate-900 tracking-tight">NombreDeTuApp</h1>
+                    <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Book ISAM</h1>
                     <p class="mt-2 text-sm text-slate-500">Inicia sesión en tu cuenta para continuar</p>
                 </div>
 
