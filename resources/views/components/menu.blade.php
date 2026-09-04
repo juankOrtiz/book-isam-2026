@@ -14,10 +14,12 @@
                     class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 transition-colors duration-200">
                     Inicio
                 </a>
-                <a href="{{ route('usuarios.index') }}"
-                    class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 transition-colors duration-200">
-                    Usuarios
-                </a>
+                @can('ver usuarios')
+                    <a href="{{ route('usuarios.index') }}"
+                        class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 transition-colors duration-200">
+                        Usuarios
+                    </a>
+                @endcan
                 @auth
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
