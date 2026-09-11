@@ -25,6 +25,7 @@
                     </a>
                 @endcan
                 @auth
+                    <x-notifications />
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button

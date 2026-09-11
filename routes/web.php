@@ -6,6 +6,7 @@ use App\Http\Controllers\ConsultaAvanzadaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ListaLecturaController;
+use App\Http\Controllers\NotificationController;
 use App\Models\ListaLectura;
 use App\Models\Libro;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +61,9 @@ Route::middleware('auth')->group(function () {
 
         dd($libros);
     });
+
+    Route::post('/notifications/{notification}/read', NotificationController::class)
+        ->name('notifications.read');
 });
 
 // Ruta para mostrar el formulario de login

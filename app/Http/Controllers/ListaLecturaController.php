@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ListaLectura;
 use App\Models\Libro;
+use App\Notifications\ListaCreada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -35,7 +36,10 @@ class ListaLecturaController extends Controller
             'descripcion' => 'nullable|string',
         ]);
 
-        $request->user()->listasLectura()->create($validated);
+        $lista = $request->user()->listasLectura()->create($validated);
+
+        $usuario = auth()->user();
+        $usuario->notify(new ListaCreada($lista));
 
         return redirect()->route('listas.index')
             ->with('status', 'Lista de lectura creada con éxito.');
